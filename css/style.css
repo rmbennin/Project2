@@ -1,0 +1,98 @@
+@font-face {
+	font-family: ChunkFive;
+	src: url(../fonts/Chunkfive.otf);
+}
+
+@font-face {
+	font-family: St Marie;
+	src: url(../fonts/StMarie-Thin.otf);
+}
+
+/* Mobile Layout: 480px and below. */
+
+/* ==================================MAIN================================== */
+
+#container {
+	background: #E6E6E6;
+	width: 85%;
+	margin: auto;
+	box-shadow: 0px 0px 30px #333;
+	border: 2px solid #6a777f;
+	border-top: none;
+}
+
+body {
+	height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-color: #33818C;
+	background-image: -ms-linear-gradient(top left, #FFFFFF 0%, #33818C 100%); /* IE10 Consumer Preview */ 
+	background-image: -moz-linear-gradient(top left, #FFFFFF 0%, #33818C 100%); /* Mozilla Firefox */ 
+	background-image: -o-linear-gradient(top left, #FFFFFF 0%, #33818C 100%); /* Opera */ 
+	background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF), color-stop(1, #33818C)); /* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-linear-gradient(top left, #FFFFFF 0%, #33818C 100%); /* Webkit (Chrome 11+) */ 
+	background-image: linear-gradient(to bottom right, #FFFFFF 0%, #33818C 100%); /* W3C Markup, IE10 Release Preview */
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Arial Black", Gadget, sans-serif;
+}
+
+h1 {
+	font-family: ChunkFive, "Arial Black";
+	font-size: 50px;
+	margin-bottom: 10px;
+}
+
+h2, #pageTitle {
+	font-family: ChunkFive, "Arial Black";
+	font-size: 25px;
+	margin-bottom: 10px;
+}
+
+h3 {
+	font-family: ChunkFive, "Arial Black";
+	font-size: 15px;
+	margin-bottom: 3px;
+}
+
+p {
+	line-height: 25px;
+	margin-bottom: 15px;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+/* ==================================HEADER================================== */
+
+header {
+	width: 98%;
+	padding: 1%;
+	
+	background: #173A3F;
+	box-shadow: 0px 10px 20px #333;
+	
+	color: #efefef;
+	text-align: right;
+	text-shadow: 0px 0px 20px #000;
+}
+
+/* ==================================MAIN================================== */
+
+#main {
+	clear: both;
+	padding: 20px;
+	border-top: 1px dotted #000;
+	box-shadow: 0px 10px 20px #333;
+}
+
+#gameCanv {
+	background: #000;	
+	width: 1000px;
+	height: 600px;
+	
+	margin: auto;
+	display: block;
+}
