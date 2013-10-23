@@ -35,11 +35,78 @@
 
 <!---==============================================MAIN==============================================-->
     <div id="main">
-    
-    	<div id="pageTitle"></div>
+    	
+        <div id="aboveGame">
         
-        <canvas id="gameCanv"></canvas>
+        	<div id="name">
+            	<h4>Name</h4>
+                <p>Name Here</p>
+            </div>
+            
+    		<div id="logo">
+            	<img src="assets/pizza.png" alt="PIZZA">
+            </div>
+            
+            <div id="score">
+            	<h4>Score</h4>
+                <p>0</p>
+            </div>
+            
+        </div>
+        
+        <div id="game">
+        	<canvas id="gameCanv"></canvas>
+        
+            <div id="gameContent">
+                <h2>Player Name</h2>
+                <form>
+                	<input type="text" placeholder="Enter Name Here">
+                    
+                    <button onClick="generateName()">Next</button>
+				</form>
+            </div>
+        </div>
+        
+        <div id="scoreboard">
+        	
+            <h2>Scoreboard</h2>
+            
+            <table>
+            	
+                <tr>
+                	<th>Name</th>
+                    <th>Score</th>
+                </tr>
                 
+                <tr id="first">
+                	<td>1. <span class="name"></span></td>
+                    <td></td>
+                </tr>
+                
+                <tr id="second">
+                	<td>2. <span class="name"></span></td>
+                    <td></td>
+                </tr>
+                
+                <tr id="third">
+                	<td>3. <span class="name"></span></td>
+                    <td></td>
+                </tr>
+                
+                <tr id="fourth">
+                	<td>4. <span class="name"></span></td>
+                    <td></td>
+                </tr>
+                
+                <tr id="fifth">
+                	<td>5. <span class="name"></span></td>
+                    <td></td>
+                </tr>
+                
+            </table>
+            
+        </div>
+        
     </div>
 <!---==============================================/MAIN==============================================-->
 
