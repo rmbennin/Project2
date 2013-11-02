@@ -1,93 +1,5 @@
-var player1Name, player2Name, chef;
+var player1Name, player2Name, game, pepperoni, chef;
 var keys = {};
-
-function Sprite(swidth, sheight, sheetUrl) {
-                
-    var me = this;
-    
-    this.animations = [];
-    this.x = 0;
-    this.y = 0;
-    this.curFrame = 0;
-    this.width = 0;
-    this.height = 0;
-    this.delay = 20;
-    this.dcount = 0;
-    this.perLine = 0;
-    this.rows = 0;
-    this.framePosition = {col:0, row:0};
-    this.curAnimation = "";
-    this.scale = { x: 1, y: 1 };
-    this.name = "";
-    
-    this.image = new Image();
-    this.image.src = sheetUrl;
-    
-    this.image.addEventListener("load", function() {
-        //calc number of frames per line
-        me.perLine = Math.floor( me.image.width / swidth );
-        //calc number of lines
-        me.rows = Math.floor( me.image.height / sheight );
-    });
-    
-    me.width = swidth;
-    me.height = sheight;
-    
-    this.update = function() {
-        
-        //position
-        
-        //draw
-        this.dcount ++;
-        if(this.dcount >= this.delay) {
-            this.dcount = 0;
-            this.curFrame ++;
-            
-            if(this.curFrame >= me.animations[me.curAnimation].length) {
-                this.curFrame = 0;
-            }
-            
-            //set row & col position
-            this.framePosition.row = Math.floor( me.animations[me.curAnimation][me.curFrame] / me.perLine );
-            this.framePosition.col = me.animations[me.curAnimation][me.curFrame] % me.perLine;
-        }
-        
-        game.save();
-        game.scale(me.scale.x, me.scale.y);
-        game.drawImage(chef.image, this.framePosition.col * me.width, this.framePosition.row * me.height, me.width, me.height, (this.scale.x * this.x) - me.width/2, this.scale.y * this.y, me.width, me.height);
-        game.restore();
-    }
-}
-
-Sprite.prototype.addAnimation = function(name, frames) {
-    
-    this.animations[name] = frames;
-}
-
-Sprite.prototype.play =  function(name) {
-    //console.log(this.name);
-    //console.log(this.animations)
-    this.dcount = this.delay;
-    this.curFrame = 0;
-    this.curAnimation = name;
-}
-
-// Does a hit test against another sprite. Returns true if they are overlapping
-Sprite.prototype.hitTest = function(other) {
-	
-    //bottom right versus top left
-    //top left versus bottom right
-     if (this.x + this.width < other.x || 
-         this.y + this.height < other.y || 
-         this.x > other.x + other.width || 
-         this.y < other.y + other.height) 
-     {
-        return false; 
-     }
-    
-    return true;
-   
-} //end hitTest
 
 // ==================================================BLANK SCREEN==================================================
 
@@ -168,10 +80,22 @@ $("#mediumLevel").click(mediumLevel);
 $("#hardLevel").click(hardLevel);
 $("#twoPlayerLevel").click(namesTwoPlayerLevel);
 
+
+// ==================================================INGREDIENTS==================================================
+
+function generateIngredient(){
+		
+	pepperoni = new Sprite(61, 46, "assets/ingredients/pepperoni.png");
+	pepperoni.addAnimation("fall", [0]);
+	pepperoni.play("fall");
+	pepperoni.x = 400;
+	pepperoni.y = 100;
+	
+} //end generateIngredient function
+
 // ==================================================LEVELS==================================================
 
 function backgroundAndSprite(){
-	
 	blankScreen();
 	$("#gameCanv").css("background", "url(assets/background.jpg)");
 	
@@ -181,46 +105,60 @@ function backgroundAndSprite(){
 	chef = new Sprite(194, 225, "assets/chef-spritesheet.png");
 	chef.addAnimation("walk", [ 3, 2, 1, 0, 1, 2 ]);
 	chef.play("walk");
-	chef.x = 0;
-	chef.y = 0;
+	chef.x = 500;
+	chef.y = 370;
+	
+	generateIngredient();
 	
 	requestAnimationFrame(update);
 	
-	score = $("#score").html();
+	score = $("#score p").html();
 	score = parseInt(score);
 	
-	document.addEventListener("keydown", function(event){
-		keys[event.keyCode] = true;
-	}) //end onkeydown function
-	
-	document.addEventListener("keyup", function(event){
-		keys[event.keyCode] = false;
-	}) //end onkeydown function
-		
-	function update(){
-		
-		game.clearRect(0, 0, 1000, 600);
-		chef.update();
-		//secondSprite.update();
-		
-		/*if(chef.hitTest(secondSprite) ) {
-			score ++;
-			$("#score").html(score);
-		} //end if statement*/
-		
-		if(keys[37]) {
-			chef.x --;
-			chef.scale.x = -1;
-		} else if(keys[39]){
-			chef.x ++;
-			chef.scale.x = 1;
-		} //end if else statement
-		
-		requestAnimationFrame(update);
-	} //end update function
-	
 } //end backgroundAndSprite function
+document.addEventListener("keydown", function(event){
+	keys[event.keyCode] = true;
+}) //end onkeydown function
 
+document.addEventListener("keyup", function(event){
+	keys[event.keyCode] = false;
+}) //end onkeydown function	
+function update(){
+	
+	game.clearRect(0, 0, 1000, 600);
+	chef.update();
+	pepperoni.update();
+	
+	if(chef.hitTest(pepperoni) ) {
+		score ++;
+		$("#score p").html(score);
+		pepperoni.removeSprite();
+	} //end if statement
+	
+	//check for collision
+    game.physics.collide(
+         sprite,
+         group, 
+         collisionHandler, 
+         null, 
+         this
+    );
+	
+	if(keys[37]) {
+		chef.x --;
+		chef.scale.x = 1;
+	} else if(keys[39]){
+		chef.x ++;
+		chef.scale.x = -1;
+	} //end if else statement
+	
+	requestAnimationFrame(update);
+} //end update function
+
+function collisionHandler(chef, ingredient) {
+    hairball.kill();   
+} //end collisionHandler function
+	
 function backgroundAndSpriteTwo(){
 	
 	$("#playerOneCanv").css({"background":"url(assets/background.jpg)", "background-position":"left"});
