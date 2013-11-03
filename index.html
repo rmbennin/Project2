@@ -13,7 +13,11 @@
         -10/21 :: CSS Modified and canvas added
         -10/26 :: Added more jQuery interactivity for game and created other AJAX templates
         -10/30 :: Fixed sprite to not take up entire screen
-        		  Score goes up when sprite goes under ingredient (needs work still)
+        -11/2  :: Converted to Phaser game
+        		  Added random ingredient generator to random x coordinates
+                  Score goes up when ingredient hits chef
+                  When one ingredient is caught, another randomly generates in a random x-coordinate
+                  Spritesheet changed to trimmed PNG/JSON
 
 -->
 
@@ -22,13 +26,13 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="js/phaser.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript" src="js/sprite-script.js"></script>
 <script>
 	$(document).ready(function() {
 		init();
 		
 		function init(){
 			nameScreen();
+			scoreboard();
 		} //end init function
 	});
 </script>
@@ -66,27 +70,27 @@
                 </tr>
                 
                 <tr id="first">
-                	<td>1. <span class="name"></span></td>
+                	<td>1. <span class="userName"></span></td>
                     <td></td>
                 </tr>
                 
                 <tr id="second">
-                	<td>2. <span class="name"></span></td>
+                	<td>2. <span class="userName"></span></td>
                     <td></td>
                 </tr>
                 
                 <tr id="third">
-                	<td>3. <span class="name"></span></td>
+                	<td>3. <span class="userName"></span></td>
                     <td></td>
                 </tr>
                 
                 <tr id="fourth">
-                	<td>4. <span class="name"></span></td>
+                	<td>4. <span class="userName"></span></td>
                     <td></td>
                 </tr>
                 
                 <tr id="fifth">
-                	<td>5. <span class="name"></span></td>
+                	<td>5. <span class="userName"></span></td>
                     <td></td>
                 </tr>
                 
