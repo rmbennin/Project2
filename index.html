@@ -18,13 +18,18 @@
                   Score goes up when ingredient hits chef
                   When one ingredient is caught, another randomly generates in a random x-coordinate
                   Spritesheet changed to trimmed PNG/JSON
+        -11/3  :: Cursed out JSON because it wasn't working the way I wanted
+        		  Game now ends and gives user option to play again or not
+                  Two player mode added
+                  Background image now appearing
+        -11/4  :: Added statement to show winning player in two player mode
 
 -->
 
 <link href="css/reset.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="js/phaser.min.js"></script>
+<script type="text/javascript" src="js/phaser.min-new.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script>
 	$(document).ready(function() {
@@ -32,7 +37,7 @@
 		
 		function init(){
 			nameScreen();
-			scoreboard();
+			//scoreboard();
 		} //end init function
 	});
 </script>
@@ -58,7 +63,7 @@
         
         <div id="game"></div>
         
-        <div id="scoreboard">
+        <!--<div id="scoreboard">
         	
             <h2>Scoreboard</h2>
             
@@ -96,7 +101,7 @@
                 
             </table>
             
-        </div>
+        </div>-->
         
     </div>
 <!---==============================================/MAIN==============================================-->
