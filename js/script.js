@@ -1,3 +1,10 @@
+/*
+
+	Developer Name: Rachelle Bennington;
+    Date Created: October 14, 2013;
+
+*/
+
 //game variables
 var game; //phaser game objects
 var background; //background
@@ -141,8 +148,7 @@ function addIngredientToScreen(){
 			break;
 		case "hard":
 			ingredient.body.gravity.y = 1.5;
-			break;
-			
+			break;	
 	} //end switch
 	
     ingredient.body.collideWorldBounds = true;
@@ -341,7 +347,7 @@ function preloadTwo() {
 function createTwo() {
 	
 	background = game.add.tileSprite(0, 0, 1024, 512, "background");
-	
+		
     //chef sprite - player 1
     chef1 = game.add.sprite(100, 320, "chef");
     chef1.animations.add("walk");
